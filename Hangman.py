@@ -2,18 +2,18 @@ word = "Test"
 box =[]
 print("Guess what is the word:")
 while True:
-    for i in word:
-        if i not in box:
+    for letter in word:
+        if letter.lower() not in box:
             print("_", end=" ")
         else:
-            print(i)
+            print(letter, end=" ")
         
         
     
     ans = input("\n\nEnter the letter: ")
-    if ans in word.split():
-        box.append(ans)
-    print(box)
+
+    box.append(ans.lower())
+ 
 
 
 
