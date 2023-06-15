@@ -1,19 +1,37 @@
-word = "Test"
-box =[]
-print("Guess what is the word:")
-while True:
-    for letter in word:
-        if letter.lower() not in box:
-            print("_", end=" ")
-        else:
-            print(letter, end=" ")
-        
-        
+import random
+
+with open('C:\\Users\\renan.r\\documents\\pythonprogram\\hagman.txt','r') as h:
+    words = h.readlines()
     
-    ans = input("\n\nEnter the letter: ")
+word = random.choice(words)[:-1]
+allowedX = 5
+guesses = []
+done = False
 
-    box.append(ans.lower())
- 
+while not done:
+    for letter in word:
+        if letter.lower() in guesses:
+            print(letter, end=" ")
+        else:
+            print("_", end= " ")
+    print("")
+    print("")
+    
+    guess = input(f"Allowed errors left {allowedX} , next guess : ")
+    guesses.append(guess.lower())
+    if guess.lower() not in word.lower():
+        allowedX -= 1
+        if allowedX == 0:
+            break    
+    done = True
+    
+    for letter in word:
+        if letter.lower() not in guesses:
+            done = False
+     
+print(guesses)
 
-
-
+if done:
+    print(f"You are correct the word is : {word}")
+else:
+    print(f"Game over the word is {word}")
